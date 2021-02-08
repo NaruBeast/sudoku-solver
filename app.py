@@ -58,5 +58,8 @@ def create_path_name(name):
 
 	return paths, names
 
+def remove_files(filename,paths):
+	os.unlink(os.path.join(app.config['UPLOAD_FOLDER'], ))
+
 if __name__ == "__main__":
 	app.run(debug=True)
