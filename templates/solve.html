@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Sudoku Solver</title>
+{% endblock %}
+
+{% block body %}
+
+
+{% if result == 'Success' %}
+{% set head = 'Sudoku Solution Found!' %}
+{% set head_sub = 'Enjoy the following solution :)' %}
+{% else %}
+{% set head = 'No Sudoku Solution Found' %}
+{% set head_sub = 'Reasons may include wrongly detected input digits or impossible puzzle. Review the following steps
+for further details. Refer to our sample sudoku puzzle image for more insights' %}
+{% endif %}
+
+<div class="container">
+    <div class="col-sm-8 mx-auto">
+        <h1 style='text-align:center'>{{head}}</h1>
+        <p>{{head_sub}}</p>
+        <div class="card-group">
+            <!--bootstrap card with 2 horizontal images-->
+            <div class="row">
+                <div class="card col-md-6">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img class="card-img-top embed-responsive-item"
+                            src="{{url_for('uploaded_file', filename=filename[0])}}">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">Image Contours</h3>
+                        <p class="card-text">Displays all the contours detected in the source image</p>
+                    </div>
+                </div>
+
+                <div class="card col-md-6">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img class="card-img-top embed-responsive-item"
+                            src="{{url_for('uploaded_file', filename=filename[1])}}">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">Source Image Digits</h3>
+                        <p class="card-text">Displays the digits detected from the source image by the machine</p>
+                    </div>
+                </div>
+            </div>
+            <!--bootstrap card with 2 horizontal images-->
+            <div class="row">
+                <div class="card col-md-6">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img class="card-img-top embed-responsive-item"
+                            src="{{url_for('uploaded_file', filename=filename[2])}}">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">Solved Digits</h3>
+                        <p class="card-text">Displays the digits of the solution (if found)</p>
+                    </div>
+                </div>
+                <div class="card col-md-6">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <img class="card-img-top embed-responsive-item"
+                            src="{{url_for('uploaded_file', filename=filename[3])}}">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">Tada! Final Solution</h3>
+                        <p class="card-text">Solution overlayed on the source image!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </br>
+        <form action="/">
+            <div class="text-center"><input type="submit" class="btn btn-primary text-center" value="Try Again!" /></div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Sudoku Solver</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="bg-light p-5 rounded">
+    <div class="col-sm-8 mx-auto">
+      <h1 style='text-align:center'>Sudoku Solver</h1>
+      </br>
+      <p>Obtain the solution to your Sudoku Puzzle here!</br></p>
+      <p>Simply upload the image of your sudoku puzzle and let the machine rumble.</p>
+      <p>The image of the puzzle should contain print text (not handwritten text).</br>
+      (Psst... <a href="{{url_for('uploaded_file', filename='sample-sudoku.jpg')}}" download target='_blank'>Download</a>
+      a sample image and try uploading it to test the app).</p>
+      <p>The digit recognition model is not very robust and hence you may experience problems obtaining the solution.</br>
+      Also, please wait for 30-60 seconds to get redirected to the solution page.</p>
+      <p>Enjoy playing around with the app and feel to drop a line on
+        <a target="_blank" href="https://www.linkedin.com/in/mohak-manghirmalani/">LinkedIn</a> or 
+        <a target="_blank" href="https://github.com/NaruBeast">GitHub</a>. Thanks!</p>
+      <form action="/solve" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="file">Upload your Sudoku image:</label>
+          <input type="file" class="form-control" name="file" autocomplete="off" id="file" required>
+        </div>
+        </br>
+        <div class="text-center"><input type="submit" class="btn btn-primary text-center" value="Solve It!"></div>
+      </form>
+    </div>
+</div>
+{% endblock %}
