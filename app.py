@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, flash, send_from_directory, render_template, request
 import urllib.request
 from werkzeug.utils import secure_filename
-import mainsud
+import src.mainsud as mainsud
 import os
 
 UPLOAD_FOLDER = 'static/uploads/'
@@ -41,7 +41,7 @@ def upload_image():
 		print("names: ",names)
 		return render_template('solve.html', filename=names, result=result)
 	else:
-		flash('Allowed image types are -> png, jpg, jpeg, gif')
+		flash('Allowed image types are -> png, jpg, jpeg')
 		return redirect(request.url)
 
 @app.route('/uploads/<filename>')

@@ -14,7 +14,7 @@ from tensorflow.keras.models import load_model
 
 # 2. LOADING THE PRE-TRAINED OCR CNN MODEL
 def initialize_prediction_model():
-    model = load_model('digit_model.h5')
+    model = load_model('src/digit_model.h5')
     return model
 
 """**3. Pre-processing the Image**"""

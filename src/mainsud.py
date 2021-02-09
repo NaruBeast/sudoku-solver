@@ -20,9 +20,9 @@
 # Uncomment when using python files
 # import sys
 # sys.path.append('C:/Users/Mohak.Manghirmalani/OneDrive - EY/Documents/misc/Sudoku')
-from utils import *
+from src.utils import *
 # from SudokuSolver import SudukoSolver
-import SudokuSolver
+import src.SudokuSolver as SudokuSolver
 ##########
 
 """**2. Defining Configuration Details**"""
