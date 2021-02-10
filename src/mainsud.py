@@ -68,7 +68,7 @@ def process_sudoku(image_path, paths):
     # 5.1 FIND THE BIGGEST COUNTOUR AND USE IT AS A SUDOKU BOARD
     biggest_contour, max_area = get_biggest_contour(contours) # FIND THE BIGGEST CONTOUR
     # print(biggest_contour)
-    print("Size of the biggest contour: ",biggest_contour.size)
+    # print("Size of the biggest contour: ",biggest_contour.size)
     if biggest_contour.size != 0:
         biggest_contour = reorder(biggest_contour)  # 
         # print(biggest_contour)
@@ -83,34 +83,34 @@ def process_sudoku(image_path, paths):
         img_detected_digits = img_blank.copy()
         img_solved_digits = img_blank.copy()
         boxes = split_boxes(img_warp_gray)
-        print("Len of boxes: ",len(boxes))
+        # print("Len of boxes: ",len(boxes))
         # cv2.imshow("Sample",boxes[65])
 
         # 5.3 FIND EACH DIGIT AVAILABLE
         numbers = get_prediction(boxes, model)
-        print("predicted boxes: ", numbers)
+        # print("predicted boxes: ", numbers)
 
         # 5.4 DISPLAY THE DETECTED NUMBERS ON THE IMAGE
         img_detected_digits = display_numbers(img_detected_digits, numbers, color=(255, 0, 255))
         numbers = np.asarray(numbers)
         pos_array = np.where(numbers > 0, 0, 1)
-        print("Pos Array: ", pos_array)
+        # print("Pos Array: ", pos_array)
 
         # 6 FIND SOLUTION OF THE SUDOKU BOARD
         board = np.array_split(numbers,9)
-        print("Before solving: " + str(board))
+        # print("Before solving: " + str(board))
         try:
-            print("Enter try")
+            # print("Enter try")
             sobj = SudokuSolver.SudokuSolver(board)
             sobj.solve_sudoku()
             # print(sobj.board)
-            print("No Exception")
+            # print("No Exception")
             #SudokuSolver(board).solve()
         except Exception as e:
-            print("Exception", e)
+            # print("Exception", e)
             pass
-        print("Solved: " + str(board))
-        print("Solved 2: " + str(sobj.board))
+        # print("Solved: " + str(board))
+        # print("Solved 2: " + str(sobj.board))
         flatlist = []
         for sublist in sobj.board:
             for item in sublist:
@@ -138,15 +138,15 @@ def process_sudoku(image_path, paths):
         cv2.imwrite(paths[1], img_detected_digits)
         cv2.imwrite(paths[2], img_solved_digits)
         cv2.imwrite(paths[3], inv_perspective)
-        print(paths)
-        print(image_path)
+        # print(paths)
+        # print(image_path)
         # image_array = ([img,img_threshold,img_contours, img_big_contour],
         #             [img_detected_digits, img_solved_digits,img_inv_warp_colored,inv_perspective])
         # stacked_image = stack_images(image_array, 1)
         # cv2.imshow('Stacked Images', stacked_image)
         return 'Success'
     else:
-        print("No Sudoku Found")
+        # print("No Sudoku Found")
         return 'No Sudoku Solution Found'
         
 

@@ -53,16 +53,16 @@ def get_biggest_contour(contours):
 
 def reorder(board_vertices):
     board_vertices = board_vertices.reshape((4, 2))
-    print(board_vertices)
+    # print(board_vertices)
     board_vertices_copy = np.zeros((4, 1, 2), dtype=np.int32)
-    print(board_vertices_copy)
+    # print(board_vertices_copy)
     add = np.sum(board_vertices, axis=1)
     # board_vertices.sum(1)
-    print(add)
+    # print(add)
     board_vertices_copy[0] = board_vertices[np.argmin(add)]
     board_vertices_copy[3] = board_vertices[np.argmax(add)]
     diff = np.diff(board_vertices, axis=1)
-    print(diff)
+    # print(diff)
     board_vertices_copy[1] = board_vertices[np.argmin(diff)]
     board_vertices_copy[2] = board_vertices[np.argmax(diff)]
     return board_vertices_copy
@@ -119,11 +119,3 @@ def draw_grid(img):
         cv2.line(img, pt1, pt2, (255, 255, 0),2)
         cv2.line(img, pt3, pt4, (255, 255, 0),2)
     return img
-
-# import tensorflow as tf
-# print(cv2.__version__)
-# print(tf.__version__)
-# import keras
-# print(keras.__version__)
-# import sys
-# print(sys.version_info)

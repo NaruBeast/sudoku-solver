@@ -37,8 +37,8 @@ def upload_image():
 		image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
 		paths, names = create_path_name(filename)
 		result = mainsud.process_sudoku(image_path, paths)
-		print("paths: ",paths)
-		print("names: ",names)
+		# print("paths: ",paths)
+		# print("names: ",names)
 		return render_template('solve.html', filename=names, result=result)
 	else:
 		flash('Allowed image types are -> png, jpg, jpeg')
@@ -55,11 +55,10 @@ def create_path_name(name):
 	for i in range(1,5):
 		names.append(f'{str(name_part[0])}_{str(i)}.png')
 		paths.append(os.path.normpath(app.config['UPLOAD_FOLDER']+str(names[i-1])))
-
 	return paths, names
 
-def remove_files(filename,paths):
-	os.unlink(os.path.join(app.config['UPLOAD_FOLDER'], ))
+# def remove_files(filename,paths):
+# 	os.unlink(os.path.join(app.config['UPLOAD_FOLDER'], ))
 
 if __name__ == "__main__":
 	app.run(debug=True)
