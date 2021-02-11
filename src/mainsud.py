@@ -144,10 +144,13 @@ def process_sudoku(image_path, paths):
         #             [img_detected_digits, img_solved_digits,img_inv_warp_colored,inv_perspective])
         # stacked_image = stack_images(image_array, 1)
         # cv2.imshow('Stacked Images', stacked_image)
-        return 'Success'
+        if any(solved_numbers):
+            return 'Success'
+        else:
+            return 'Sudoku Solution Not Found'
     else:
         # print("No Sudoku Found")
-        return 'No Sudoku Solution Found'
+        return 'Sudoku Puzzle Not Identified    '
         
 
     # cv2.waitKey(0)
